@@ -12,13 +12,19 @@
 
 
 
-nums = [12,4,5,6,7,43,3,9,1,11,34,76,98,4,23,45,67,89,10,72]
+nums = [12, 4, 5, 6, 7, 43, 3, 9, 1, 11, 34, 76, 98, 4, 23, 45, 67, 89, 10, 72]
 
 
+
+"""Create SubLists from the list of 20 numbers"""
 def create_subList(nums):
-    sublist = [nums[i:i + len(nums)] for i in range(0, len(nums,))]
+    sublist = [nums[i:j] for i in range(len(nums)) for j in range(i + 1, len(nums) + 1)]
     print(sublist)
+
+def subList_sort(sublist,nums):
 
 
 def main(nums):
-    print(create_subList)
+    create_subList(nums)
+
+main(nums)
