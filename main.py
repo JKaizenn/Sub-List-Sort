@@ -10,20 +10,43 @@
 #      -total time in hours including reading the assignment and submitting the program-
 
 
-
+nums = [12, 4, 5, 6, 7, 43, 3, 9, 1, 11, 34, 76, 98, 4, 23, 45, 67, 89, 10, 72]
 
 nums = [12, 4, 5, 6, 7, 43, 3, 9, 1, 11, 34, 76, 98, 4, 23, 45, 67, 89, 10, 72]
 
-
-
-"""Create SubLists from the list of 20 numbers"""
 def create_subList(nums):
     sublist = [nums[i:j] for i in range(len(nums)) for j in range(i + 1, len(nums) + 1)]
-    print(sublist)
+    return sublist
 
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left_half = merge_sort(arr[:mid])
+    right_half = merge_sort(arr[mid:])
+    return merge(left_half, right_half)
 
+def merge(left, right):
+    sorted_list = []
+    left_index, right_index = 0, 0
+    while left_index < len(left) and right_index < len(right):
+        if left[left_index] < right[right_index]:
+            sorted_list.append(left[left_index])
+            left_index += 1
+        else:
+            sorted_list.append(right[right_index])
+            right_index += 1
+    sorted_list.extend(left[left_index:])
+    sorted_list.extend(right[right_index:])
+    return sorted_list
+
+def subList_sort(nums, sublist):
+    sorted_sublists = [merge_sort(sub) for sub in sublist]
+    return sorted_sublists
 
 def main(nums):
-    create_subList(nums)
+    sublist = create_subList(nums)
+    sorted_sublists = subList_sort(nums, sublist)
+    print(sorted_sublists)
 
 main(nums)
