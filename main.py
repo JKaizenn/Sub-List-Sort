@@ -10,9 +10,8 @@
 #      -total time in hours including reading the assignment and submitting the program-
 
 
-nums = [12, 4, 5, 6, 7, 43, 3, 9, 1, 11, 34, 76, 98, 4, 23, 45, 67, 89, 10, 72]
+nums = [34, 12, 45, 23, 8, 47, 50, 15, 29, 41, 33, 18, 77, 62, 3, 67, 90, 55, 22, 39]
 
-nums = [12, 4, 5, 6, 7, 43, 3, 9, 1, 11, 34, 76, 98, 4, 23, 45, 67, 89, 10, 72]
 
 def create_subList(nums):
     sublist = [nums[i:j] for i in range(len(nums)) for j in range(i + 1, len(nums) + 1)]
