@@ -1,14 +1,23 @@
 
 def getNumber():
-    return 0
-
+    number = -1
+    while True:
+        try:
+            number = int(input("Enter a positive integer: "))
+            if number >= 0:
+                return number
+            print("Please enter a positive number (>0):")
+            if number <0:
+                raise ValueError
+        except ValueError:
+            print("Invalid Number, Please input a valid number")
 
 def getFormat():
     return 'all'
 
 
-def display(number, format):
-    print(f'{number}, {format}')
+def display(number,conversions, format):
+    print(f'{number},{conversions},{format}')
 
 def convert(number):
     bin = convert_to_binary(number)
@@ -18,22 +27,28 @@ def convert(number):
     return oct, bin, hex
 
 def convert_to_binary(number):
-    return "0101"
+    return bin(number)[2:]
   
 def convert_to_octal(number):
-    return "71"
+    return oct(number)[2:]
 
 def convert_to_hex(number):
-    return "A"  
+    return hex(number)[2:]
 
+
+
+def get_test_number():
+    number = -1
+    while number != 0:
+        number = get_number()
+        
+        
 def main():
     
-    number = getNumber
-    format = getFormat
-    
+    number = getNumber()
+    format = getFormat()
     conversions = convert(number)
-    
-    # print(number,format)
-    display(conversions, format)
+    display(number, conversions, format)
 
-main()
+if __name__ == "__main__":
+    main()

@@ -9,9 +9,15 @@
 # 5. How long did it take for you to complete the assignment?
 #      -total time in hours including reading the assignment and submitting the program-
 
+def findEndOfSorted(nums, start):
+    end = start
+    # Identify the end of a descending sublist
+    while end < len(nums) - 1 and nums[end] >= nums[end + 1]:
+        end += 1
+    return end
 
 def subListSort(nums):
-    # Initialize the destination list with zeros
+    # Initialize the destination list
     destinationList = [0] * len(nums)
     destIndex = 0
     index = 0
@@ -20,11 +26,12 @@ def subListSort(nums):
         start = index
         end = findEndOfSorted(nums, start)
         
-        # Sort the sublist from start to end
+        # Extract the sublist
         sublist = nums[start:end + 1]
+        # Sort the sublist in ascending order
         sublist.sort()
         
-        # Copy the sorted sublist to the destination list
+        # Copy the sorted sublist into the destination list
         for i in range(len(sublist)):
             destinationList[destIndex] = sublist[i]
             destIndex += 1
@@ -32,15 +39,9 @@ def subListSort(nums):
         # Move to the next sublist
         index = end + 1
     
+    # Sort the entire destination list
+    destinationList.sort()
     return destinationList
-
-
-def findEndOfSorted(nums, start):
-    end = start
-    while end < len(nums) - 1 and nums[end] >= nums[end + 1]:
-        end += 1
-    return end
-
 
 def main():
     nums = [34, 12, 45, 23, 8, 47, 50, 15, 29, 41, 33, 18, 77, 62, 3, 67, 90, 55, 22, 39]
