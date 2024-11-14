@@ -13,7 +13,11 @@ def getNumber():
             print("Invalid Number, Please input a valid number")
 
 def getFormat():
-    return 'all'
+    options = {'hex','bin','oct','all'}
+    selection = ''
+    while selection.lower() not in options:
+        selection = input(f"Please enter a format of Hex, Bin, Oct, or All {options}:")
+    return selection.lower()
 
 
 def display(number,conversions, format):
@@ -36,10 +40,10 @@ def convert_to_hex(number):
     return hex(number)[2:]
 
 
-
 def get_test_number():
     number = -1
     while number != 0:
+        number = getNumber()
         number = get_number()
         
         
