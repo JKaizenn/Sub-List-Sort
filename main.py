@@ -10,42 +10,42 @@
 #      -total time in hours including reading the assignment and submitting the program-
 
 
-nums = [34, 12, 45, 23, 8, 47, 50, 15, 29, 41, 33, 18, 77, 62, 3, 67, 90, 55, 22, 39]
+def subListSort(nums):
+    # Initialize the destination list with zeros
+    destinationList = [0] * len(nums)
+    destIndex = 0
+    index = 0
+    
+    while index < len(nums):
+        start = index
+        end = findEndOfSorted(nums, start)
+        
+        # Sort the sublist from start to end
+        sublist = nums[start:end + 1]
+        sublist.sort()
+        
+        # Copy the sorted sublist to the destination list
+        for i in range(len(sublist)):
+            destinationList[destIndex] = sublist[i]
+            destIndex += 1
+        
+        # Move to the next sublist
+        index = end + 1
+    
+    return destinationList
 
 
-def create_subList(nums):
-    sublist = [nums[i:j] for i in range(len(nums)) for j in range(i + 1, len(nums) + 1)]
-    return sublist
+def findEndOfSorted(nums, start):
+    end = start
+    while end < len(nums) - 1 and nums[end] >= nums[end + 1]:
+        end += 1
+    return end
 
-def merge_sort(arr):
-    if len(arr) <= 1:
-        return arr
-    mid = len(arr) // 2
-    left_half = merge_sort(arr[:mid])
-    right_half = merge_sort(arr[mid:])
-    return merge(left_half, right_half)
 
-def merge(left, right):
-    sorted_list = []
-    left_index, right_index = 0, 0
-    while left_index < len(left) and right_index < len(right):
-        if left[left_index] < right[right_index]:
-            sorted_list.append(left[left_index])
-            left_index += 1
-        else:
-            sorted_list.append(right[right_index])
-            right_index += 1
-    sorted_list.extend(left[left_index:])
-    sorted_list.extend(right[right_index:])
-    return sorted_list
-
-def subList_sort(nums, sublist):
-    sorted_sublists = [merge_sort(sub) for sub in sublist]
-    return sorted_sublists
-
-def main(nums):
-    sublist = create_subList(nums)
-    sorted_sublists = subList_sort(nums, sublist)
-    print(sorted_sublists)
-
-main(nums)
+def main():
+    nums = [34, 12, 45, 23, 8, 47, 50, 15, 29, 41, 33, 18, 77, 62, 3, 67, 90, 55, 22, 39]
+    sorted_list = subListSort(nums)
+    print("Sorted list:", sorted_list)
+    
+if __name__ == "__main__":
+    main()
