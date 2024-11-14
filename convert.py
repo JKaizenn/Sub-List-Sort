@@ -31,7 +31,18 @@ def convert(number):
     return oct, bin, hex
 
 def convert_to_binary(number):
-    return bin(number)[2:]
+    """Convert an integer number to binary. Return the binary string representation of the number"""
+    binary_digits = []
+    while number > 0:
+        binary_digits.append(number %2)
+        number //= 2
+        print(binary_digits)
+    binary_string = ''
+    for i in range(len(binary_digits)-1,-1,-1):
+        binary_string += str(binary_digits[i])
+        
+        print(binary_string)
+  
   
 def convert_to_octal(number):
     return oct(number)[2:]
